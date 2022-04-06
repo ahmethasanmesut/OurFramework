@@ -1,4 +1,4 @@
-package Runner;
+package com.hanume.Runner;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"
         },
         features = "src/test/resources/features",
-        glue = "src/test/java/Step_Defs",
-        dryRun = true,
+        glue = "com/hanume/Step_Defs",
+        dryRun = false,
         tags = "@wip"
 )
 public class CukesRunner {

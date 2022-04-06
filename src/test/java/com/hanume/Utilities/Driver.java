@@ -1,4 +1,4 @@
-package Utilities;
+package com.hanume.Utilities;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;

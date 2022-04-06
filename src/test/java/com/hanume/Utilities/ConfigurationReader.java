@@ -1,4 +1,4 @@
-package Utilities;
+package com.hanume.Utilities;
 
 import java.io.FileInputStream;
 import java.util.Properties;

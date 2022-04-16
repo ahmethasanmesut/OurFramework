@@ -13,4 +13,5 @@ public abstract class BasePage {
       public void getLink(String link){
         Driver.get().findElement(By.xpath("//a[.='"+link+"']"));
       }
+
 }

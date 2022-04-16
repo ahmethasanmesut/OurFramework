@@ -10,12 +10,16 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class OrderStepDef {
 
     OrderPage orderPage = new OrderPage();
     Faker faker = new Faker(Locale.ENGLISH);
+    Random rn = new Random();
 
     @Given("User is on the dashboard page")
     public void user_is_on_the_dashboard_page() {
@@ -44,6 +48,22 @@ public class OrderStepDef {
         orderPage.ukTable.click();
         BrowserUtils.waitFor(1);
         orderPage.okBtn.click();
+        orderPage.chef.click();
+        BrowserUtils.waitFor(2);
+        int size = orderPage.chefNames.size();
+        System.out.println("size = " + size);
+        int randomNumber = rn.nextInt(size)+1;
+        orderPage.chefNames.get(randomNumber).click();
+        orderPage.address.click();
+        String address = faker.address().city();
+        orderPage.address.sendKeys(address);
+        orderPage.start.click();
+        orderPage.dateBtn.click();
+        orderPage.may.click();
+        orderPage.selectDate();
+
+
+
 
 
     }

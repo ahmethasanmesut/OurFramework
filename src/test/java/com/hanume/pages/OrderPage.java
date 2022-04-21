@@ -3,6 +3,7 @@ package com.hanume.pages;
 import com.hanume.Utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public class OrderPage extends BasePage{
     @FindBy(xpath = "(//button[.='OK'][@class='awe-btn awe-okbtn o-pbtn'])[2]")
     public WebElement okBtn;
 
+    @FindBy(xpath = "//button[.='OK'][@class='awe-btn awe-okbtn o-pbtn']")
+    public  WebElement ok2Btn;
+
     @FindBy(xpath = "//tbody/tr[@data-k='3']")
     public WebElement ukTable;
 
@@ -55,17 +59,31 @@ public class OrderPage extends BasePage{
     @FindBy(xpath = "//input[@placeholder='please select']")
     public WebElement time;
 
-    @FindBy(css = "#createdinnersGridDuration-awed")
+    @FindBy(xpath = "//button[@aria-label='increase value']")
     public WebElement duration;
+
+    @FindBy(xpath = "//div[@class='o-mltic']")
+    public WebElement meals;
 
     @FindBy(xpath = "//button[@aria-label='delete']")
     public WebElement deleteBtn;
 
-   public void selectDate(){
-       Random rnd = new Random();
+    Random rnd = new Random();
+
+   public WebElement selectDate(){
        int randomDate = rnd.nextInt(31)+1;
-       Driver.get().findElement(By.xpath("//table//td[.='"+randomDate+"']")).click();
+       return Driver.get().findElement(By.xpath("//table//td[.='"+randomDate+"']"));
+
   }
+
+ @FindBy(xpath = "//li[@data-val='1243']")
+    public WebElement potato;
+
+    @FindBy(xpath = "//li[@data-val='1236']")
+    public WebElement pancake;
+
+    @FindBy(xpath = "(//div[@style='margin-right: 1em;'])[2]")
+    public WebElement actDate;
 
 
 

@@ -6,9 +6,13 @@ import com.hanume.Utilities.ConfigurationReader;
 import com.hanume.Utilities.Driver;
 import com.hanume.pages.OrderPage;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Date;
 import java.util.Locale;
@@ -20,6 +24,8 @@ public class OrderStepDef {
     OrderPage orderPage = new OrderPage();
     Faker faker = new Faker(Locale.ENGLISH);
     Random rn = new Random();
+    String day;
+
 
     @Given("User is on the dashboard page")
     public void user_is_on_the_dashboard_page() {
@@ -38,6 +44,7 @@ public class OrderStepDef {
     }
     @When("click create button")
     public void click_create_button() {
+        WebDriverWait wait = new WebDriverWait(Driver.get(),10);
         orderPage.createBtn.click();
         BrowserUtils.waitFor(4);
         String dish = faker.food().dish();
@@ -60,11 +67,32 @@ public class OrderStepDef {
         orderPage.start.click();
         orderPage.dateBtn.click();
         orderPage.may.click();
-        orderPage.selectDate();
-
-
-
-
+        WebElement element = orderPage.selectDate();
+        day = element.getText();
+        element.click();
+        orderPage.time.sendKeys("12:25",Keys.ENTER);
+        BrowserUtils.waitFor(3);
+        Actions actions = new Actions(Driver.get());
+        actions.doubleClick(orderPage.duration).doubleClick(orderPage.duration).perform();
+        BrowserUtils.waitFor(2);
+        orderPage.meals.click();
+        BrowserUtils.waitFor(2);
+       orderPage.potato.click();
+       orderPage.pancake.click();
+       orderPage.ok2Btn.click();
 
     }
+
+    @Then("assert date is successfully completed")
+    public void assertDateIsSuccessfullyCompleted() {
+        BrowserUtils.waitFor(3);
+        String actualDate = orderPage.actDate.getText();
+        String[] array = actualDate.split(" ");
+        System.out.println("array[0] = " + array[0]);
+        String expectedDay = day;
+        String[] arrDay = array[0].split("/");
+        String actualDay = arrDay[1];
+        Assert.assertEquals(expectedDay,actualDay);
+    }
+
 }

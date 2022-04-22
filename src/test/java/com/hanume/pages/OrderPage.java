@@ -11,8 +11,7 @@ import java.util.Random;
 
 public class OrderPage extends BasePage{
 
-    @FindBy(id = "btnCookie")
-    public WebElement cookie;
+
 
     @FindBy(xpath = "//button[@id='ddlFmw-awed']")
     public WebElement orderTab;

@@ -1,5 +1,5 @@
 Feature: Ordering
-   @wip2
+   @wip
   Scenario: Creating menu
     Given User is on the dashboard page
     When User move to dropdown

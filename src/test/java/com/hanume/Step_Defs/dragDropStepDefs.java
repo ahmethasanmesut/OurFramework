@@ -6,11 +6,14 @@ import com.hanume.pages.DragDropPages;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.Actions;
 
 public class dragDropStepDefs {
     DragDropPages dragDropPages = new DragDropPages();
     Actions actions = new Actions(Driver.get());
+    JavascriptExecutor js = ((JavascriptExecutor) Driver.get());
 
     @When("Handle with cookies")
     public void handleWithCookies() {
@@ -21,7 +24,14 @@ public class dragDropStepDefs {
 
     @When("user move item four and five under first box")
     public void userMoveItemFourAndFiveUnderFirstBox() {
-
+        BrowserUtils.waitFor(5);
+       String p = dragDropPages.rastgele.getText();
+        System.out.println(p);
+        //int X = p.getX();
+        //int Y = p.getY();
+        //System.out.println(X);
+        //System.out.println(Y);
+        //js.executeScript("window.scrollBy(" + X + ", " + Y + ");");
         actions.dragAndDrop(dragDropPages.from4, dragDropPages.toFirstBox).build().perform();
         BrowserUtils.waitFor(2);
 

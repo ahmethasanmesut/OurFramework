@@ -22,32 +22,35 @@ public class dragDropStepDefs {
 
     }
 
-    @When("user move item four and five under first box")
-    public void userMoveItemFourAndFiveUnderFirstBox() {
-        BrowserUtils.waitFor(5);
-       String p = dragDropPages.rastgele.getText();
-        System.out.println(p);
-        //int X = p.getX();
-        //int Y = p.getY();
-        //System.out.println(X);
-        //System.out.println(Y);
-        //js.executeScript("window.scrollBy(" + X + ", " + Y + ");");
-        actions.dragAndDrop(dragDropPages.from4, dragDropPages.toFirstBox).build().perform();
+    @When("user move all items inside first box")
+    public void userMoveAllItemsInsideFirstBox() {
+        BrowserUtils.waitFor(3);
+        js.executeScript("window.scrollBy(0,750)","");
+        BrowserUtils.waitFor(3);
+        js.executeScript("window.scrollBy(0,750)","");
+        BrowserUtils.waitFor(3);
+        js.executeScript("window.scrollBy(0,750)","");
+        BrowserUtils.waitFor(3);
+        js.executeScript("window.scrollBy(0,1500)","");
+
+         BrowserUtils.waitFor(2);
+
+        actions.clickAndHold(dragDropPages.from4)
+                .moveToElement(dragDropPages.toFirstBoxFour).release().perform();
+        // actions.dragAndDrop(dragDropPages.from4, dragDropPages.toFirstBox).perform();
         BrowserUtils.waitFor(2);
+        //actions.clickAndHold(dragDropPages.from5)
+         //       .moveToElement(dragDropPages.toFirstBox).build().perform();
+      //  actions.dragAndDrop(dragDropPages.from5,dragDropPages.toFirstBox).perform();
+        //BrowserUtils.waitFor(2);
 
-        actions.dragAndDrop(dragDropPages.from5,dragDropPages.toFirstBox).build().perform();
-
-
-    }
-
-    @And("move rest of the items under first box")
-    public void moveRestOfTheItemsUnderFirstBox() {
-
-      actions.dragAndDrop(dragDropPages.from6, dragDropPages.toFirstBox).build().perform();
-      BrowserUtils.waitFor(2);
-
-      actions.dragAndDrop(dragDropPages.from7, dragDropPages.toFirstBox).build().perform();
-
+   //     actions.clickAndHold(dragDropPages.from6)
+       //         .moveToElement(dragDropPages.toFirstBox).build().perform();
+         //actions.dragAndDrop(dragDropPages.from6, dragDropPages.toFirstBox).perform();
+        //BrowserUtils.waitFor(2);
+        //actions.clickAndHold(dragDropPages.from7)
+          //      .moveToElement(dragDropPages.toFirstBox).build().perform();
+         //actions.dragAndDrop(dragDropPages.from7, dragDropPages.toFirstBox).perform();
     }
 
     @Then("assert that all items move successfully under first box")

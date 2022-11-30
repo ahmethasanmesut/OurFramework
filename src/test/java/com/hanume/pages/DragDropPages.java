@@ -8,11 +8,11 @@ public class DragDropPages extends BasePage{
 @FindBy(xpath = "//div[contains(text(),'item 4')]")
     public WebElement from4;
 
-    @FindBy(xpath = "//div[contains(text(),'item 5')]")
+    @FindBy(xpath = "//div[@data-k='b']/div[1]")
     public WebElement from5;
 
-    @FindBy(xpath = "//div[@id='board1']/div[1]")
-    public WebElement toFirstBox;
+    @FindBy(xpath = "//div[@id='board1']/div[1]/div[4]")
+    public WebElement toFirstBoxFour;
 
     @FindBy(xpath = "//div[contains(text(),'item 6')]")
     public WebElement from6;
